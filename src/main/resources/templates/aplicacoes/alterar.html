@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Alterar Aplicação</title>
+</head>
+
+<body>
+    <!-- conteudo principal -->
+    <main layout:fragment="conteudo" th:fragment="formulario" id="main" class="flex flex-col align-middle w-full m-10">
+        <div th:replace="~{layout/fragments/csrf :: csrf}"></div>
+        <h2 class="text-xl font-semibold text-gray-400 md:text-3xl">Alterar</h2>
+
+        <form th:hx-post="@{/aplicacoes/alterar}" hx-target="#main" hx-swap="outerHTML" th:object="${aplicacao}" class="w-2/3 mt-10">
+
+            <div class="flex flex-col">
+                <label for="codigo" class="block text-gray-700 font-medium mb-2">Código</label>
+                <input type="number" th:field="*{codigo}" disabled class="w-1/2 py-3 px-4 text-gray-500 border-gray-300 rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none" />
+                <input type="hidden" th:field="*{codigo}">
+
+                <label for="pessoa.nome" class="block text-gray-700 font-medium mb-2">Nome da Pessoa</label>
+                <input type="text" th:field="*{pessoa.nome}" disabled class="w-1/2 py-3 px-4 text-gray-500 border-gray-300 rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none" />
+                <input type="hidden" th:field="*{pessoa.nome}">
+
+                <label for="pessoa.cpf" class="block text-gray-700 font-medium mb-2">CPF da Pessoa</label>
+                <input type="text" th:field="*{pessoa.cpf}" disabled class="w-1/2 py-3 px-4 text-gray-500 border-gray-300 rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none" />
+                <input type="hidden" th:field="*{pessoa.cpf}">
+
+                <label for="lote.codigo" class="block text-gray-700 font-medium mb-2">Código do Lote</label>
+                <input type="text" th:field="*{lote.codigo}" disabled class="w-1/2 py-3 px-4 text-gray-500 border-gray-300 rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none" />
+                <input type="hidden" th:field="*{lote.codigo}">
+
+                <label for="lote.vacina.nome" class="block text-gray-700 font-medium mb-2">Nome da Vacina do Lote</label>
+                <input type="text" th:field="*{lote.vacina.nome}" disabled class="w-1/2 py-3 px-4 text-gray-500 border-gray-300 rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none" />
+                <input type="hidden" th:field="*{lote.vacina.nome}">
+
+                <div th:replace="~{layout/fragments/forms :: inputdata('Data', 'data')}"></div>
+
+                <div>
+                    <button type="submit" class="mt-5 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Alterar</button>
+                </div>
+            </div>
+        </form>
+
+    </main>
+    <!-- !conteudo principal -->
+
+</body>
+
+</html>
